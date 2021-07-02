@@ -31,16 +31,39 @@ function change_slide() {
   div.style.fontFamily = data[cur_slide].font;
 }
 
-// Next slide
+// Next slide function
+function next_slide() {
+  cur_slide < data.length - 1 ? cur_slide++ : (cur_slide = 0);
+  change_slide();
+}
+
+// Prev slide function
+function prev_slide() {
+  cur_slide > 0 ? cur_slide-- : (cur_slide = data.length - 1);
+  change_slide();
+}
+
+// Timer that changes slide
+let timer = setInterval(next_slide, 6000);
+
+// Reset timer function
+function reset_timer() {
+  clearInterval(timer);
+  timer = setInterval(next_slide, 6000);
+}
+
+// Next slide btn
 arrow_right.addEventListener("click", function () {
-  cur_slide < 5 ? cur_slide++ : (cur_slide = 0);
-
-  change_slide();
+  next_slide();
+  reset_timer();
 });
 
-// Prev slide
+// Prev slide btn
 arrow_left.addEventListener("click", function () {
-  cur_slide > 0 ? cur_slide-- : (cur_slide = 5);
-
-  change_slide();
+  prev_slide();
+  reset_timer();
 });
+
+// Animations
+// Next animation
+// Prev animation
